@@ -1,11 +1,12 @@
 <?php
 require_once 'librairies/database.php';
 require_once 'librairies/utils.php';
+require_once 'librairies/models/Article.php';
 
 /**
  * 1. Récupération des articles
  */
-$articles = findAllArticles();
+$articles = (new Article())->findAll();
 
 /**
  * 2. Affichage
