@@ -6,7 +6,7 @@ require_once 'librairies/models/Article.php';
 /**
  * 1. Récupération des articles
  */
-$articles = (new Article())->findAll();
+$articles = (new Article())->findAll("created_at DESC");
 
 /**
  * 2. Affichage
