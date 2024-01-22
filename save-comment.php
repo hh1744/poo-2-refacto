@@ -1,4 +1,4 @@
 <?php
-require_once 'librairies/controllers/Comment.php';
+require_once 'librairies/auoload.php';
 
 (new \Controllers\Comment())->save();
