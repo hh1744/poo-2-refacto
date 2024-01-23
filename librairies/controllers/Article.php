@@ -13,32 +13,32 @@ class Article extends Controller
         \Renderer::render('articles/index', compact('pageTitle', 'articles'));
     }
 
-    public function show(int $id): void
+    public function show(): void
     {
-        if (!empty($id)) {
-            $article_id = $id;
+        if (!empty($_GET['id'])) {
+            $article_id = $_GET['id'];
         }
 
-        $article = $this->model->find($id);
-        $commentaires = (new \Models\Comment())->findAllWithArticle($id);
+        $article = $this->model->find($_GET['id']);
+        $commentaires = (new \Models\Comment())->findAllWithArticle($_GET['id']);
         $pageTitle = $article['title'];
 
         \Renderer::render('articles/show', compact('pageTitle','article', 'commentaires', 'article_id'));
     }
 
-    public function delete(int $id): void
+    public function delete(): void
     {
-        if (empty($id)) {
+        if (empty($_GET['id'])) {
             die("Ho ?! Tu n'as pas précisé l'id de l'article !");
         }
 
-        $article = $this->model->find($id);
+        $article = $this->model->find($_GET['id']);
 
         if (!$article) {
-            die("L'article $id n'existe pas, vous ne pouvez donc pas le supprimer !");
+            die("L'article " . $_GET['id'] . " n'existe pas, vous ne pouvez donc pas le supprimer !");
         }
 
-        $this->model->delete($id);
+        $this->model->delete($_GET['id']);
 
         \Http::redirect("index.php");
     }
