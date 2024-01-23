@@ -1,8 +1,6 @@
 <?php
 namespace Controllers;
 
-require_once 'librairies/utils.php';
-
 class Comment extends Controller
 {
     protected $modelName = \Models\Comment::class;
@@ -23,7 +21,7 @@ class Comment extends Controller
         $article_id = $commentaire['article_id'];
         $this->model->delete($id);
 
-        redirect("article.php?id=" . $article_id);
+        \Http::redirect("article.php?id=" . $article_id);
     }
 
     public function save(): void
@@ -54,6 +52,6 @@ class Comment extends Controller
 
         $this->model->insert($author, $content, $article_id);
 
-        redirect('article.php?id=' . $article_id);
+        \Http::redirect('article.php?id=' . $article_id);
     }
 }

@@ -1,8 +1,6 @@
 <?php
 namespace Models;
 
-require_once 'librairies/database.php';
-
 abstract class Model
 {
     protected $pdo;
@@ -10,7 +8,7 @@ abstract class Model
 
     public function __construct()
     {
-        $this->pdo = getPDO();
+        $this->pdo = \Database::getPDO();
     }
 
     public function find(int $id)
